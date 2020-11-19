@@ -1,0 +1,224 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
+*:focus {
+    outline: none;
+}
+
+body {
+    display: flex;
+    background-color: darkslategrey;
+    background-position: center center;
+    color: white;
+    text-align:  center;
+}
+.mainpage {
+    text-align: center;
+}
+
+
+nav{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    width: 100%;
+    position: fixed;
+    left: 12px;
+    top:50px;
+    text-align:center;
+}
+nav a{
+    /* display: flex;*/
+    font-family: 'Oswald', sans-serif;
+    font-weight:500;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:white;
+    margin:0 15px;
+    font-size:16px;
+    letter-spacing:1px;
+    position:relative;
+    display:inline-block;
+}
+nav a:before{
+    content:'';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background:white;
+    left: 12px;
+    top:47%;
+    animation:out 0.2s cubic-bezier(1, 0, 0.58, 0.97) 1 both;
+}
+nav a:hover:before{
+    animation:in 0.2s cubic-bezier(1, 0, 0.58, 0.97) 1 both;
+
+}
+@keyframes in{
+    0%{
+        width: 0;
+        left:0;
+        right:auto;
+    }
+    100%{
+        left:0;
+        right:auto;
+        width: 100%;
+    }
+}
+@keyframes out{
+    0%{
+        width:100%;
+        left: auto;
+        right: 0;
+    }
+    100%{
+        width: 0;
+        left: auto;
+        right: 0;
+    }
+}
+
+
+#mainy {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin: 5% auto;
+    width: 600px;
+    height: 400px;
+    background: #FFF;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+.mainpage {
+    position: absolute;
+    top: 0;
+    right: 0;
+    box-sizing: border-box;
+    padding: 40px;
+    width: 600px;
+    height: 400px;
+    background: url('https://images.unsplash.com/photo-1559825481-12a05cc00344?ixlib=rb-1.2.1&w=1000&q=80');
+    background-size: cover;
+    background-position: center;
+    border-radius: 0 2px 2px 0;
+}
+#regi {
+    position: relative;
+    margin: 5% auto;
+    width: 600px;
+    height: 400px;
+    background: #FFF;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+#authi {
+    position: relative;
+    margin: 5% auto;
+    width: 600px;
+    height: 400px;
+    background: #FFF;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.registration {
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    padding: 40px;
+    width: 300px;
+    height: 400px;
+}
+.mainpage h1 {
+    margin: 0 0 20px 0;
+    color: white;
+    font-weight: 300;
+    font-size: 28px;
+}
+h1 {
+    margin: 0 0 20px 0;
+    color: black;
+    font-weight: 300;
+    font-size: 28px;
+}
+input[type="text"] {
+    display: block;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    padding: 4px;
+    width: 220px;
+    height: 32px;
+    border: none;
+    border-bottom: 1px solid #AAA;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    transition: 0.2s ease;
+}
+input[type="text"]:focus {
+    border-bottom: 2px solid darkslategrey;
+    color: darkslategrey;
+    transition: 0.2s ease;
+}
+
+
+.right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    box-sizing: border-box;
+    padding: 40px;
+    width: 300px;
+    height: 400px;
+    background: url('https://images.unsplash.com/photo-1559825481-12a05cc00344?ixlib=rb-1.2.1&w=1000&q=80');
+    background-size: cover;
+    background-position: center;
+    border-radius: 0 2px 2px 0;
+}
+.right .rightpart {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 28px;
+    font-family: cursive, sans-serif;
+    color: #FFF;
+    text-align: center;
+}
+
+
+
+.App {
+    background-color: darkslategrey;
+    background-position: center center;
+    color: white;
+    text-align:  center;
+}
+
+
+input[type=submit] {
+    margin-top: 28px;
+    width: 120px;
+    height: 32px;
+    background: darkslategrey;
+    border: none;
+    border-radius: 2px;
+    color: #FFF;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: 0.1s ease;
+    cursor: pointer;
+}
+input[type="submit"]:hover,
+input[type="submit"]:focus {
+    opacity: 0.8;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    transition: 0.1s ease;
+}
+input[type="submit"]:active {
+    opacity: 1;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    transition: 0.1s ease;
+}

@@ -24,8 +24,8 @@ function Article(props) {
             text: Article.PropTypes.string.isRequired,
         })
     };
-    let author = props.author;
-    let text = props.text;
+    let author = props.data.author;
+    let text = props.data.text;
     return (
         <div className={'article'}>
             <p className={'article_author'}>{author}</p>

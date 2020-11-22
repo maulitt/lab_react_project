@@ -32,7 +32,7 @@ module.exports = {
         historyApiFallback: true,
         hot: true,
         proxy: {
-            '/api': {
+            '/api/': {
                 target: {
                     host: '127.0.0.1',
                     protocol: 'http:',

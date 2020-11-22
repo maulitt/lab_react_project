@@ -5,6 +5,18 @@ import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 
 
+let my_news_example = [
+    {
+        author: 'Regina',
+        text: 'I wanna sleep'
+    },
+    {
+        author: 'Weather',
+        text: 'It\'s cold and windy. Stay home'
+    }
+]
+
+
 function Article(props) {
     Article.PropTypes = {
         data: Article.PropTypes.shape({
@@ -21,17 +33,32 @@ function Article(props) {
         </div>
     );
 }
-function News() {
+function News(props) {
     News.PropTypes = {
         data: News.PropTypes.array.isRequired
     };
     let newsTemplate;
+    let data = props.data;
+
+    if (data.length > 0) {
+        newsTemplate = data.map(function(item, index) {
+            return (
+                <div key={index}>
+                    <Article data={item} />
+                </div>
+            )
+        })
+    } else {
+        newsTemplate = <p>No new news yet(</p>
+    }
+    return (
+        <div className={'news'}>
+            {newsTemplate}
+            <strong
+                className={'news_count'}>Amount of news: {data.length}</strong>
+        </div>
+    );
 }
-
-
-
-
-
 
 
 function Test(props) {
@@ -76,12 +103,12 @@ function Register() {
         alert(name+' '+password+' '+email);
     }
     function createUser(name, email, password) {
-        fetch('http://127.0.0.1:3000/api/resource', {
+        fetch('/api/resource', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: { "name": name,"email": email, "password": password },
+            body: JSON.stringify({ name: name, email: email, password: password }),
         })
             .then(response => {return response.text();})
             .then(data => {
@@ -179,7 +206,8 @@ function Auth() {
 const Routes = {
     "/": () => <Main />,
     "/register": () => <Register />,
-    "/auth": () => <Auth />
+    "/auth": () => <Auth />,
+    "/news": () => <News data={my_news_example} />
 }
 
 function Menu() {
@@ -188,6 +216,7 @@ function Menu() {
             <A href={"/"}>Main</A>
             <A href={"/register"}>Registration</A>
             <A href={"/auth"}>Authentication</A>
+            <A href={"/news"}>News</A>
         </div>
     )
 }

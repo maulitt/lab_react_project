@@ -19,22 +19,26 @@ let my_news_example = [
         title: 'Today\'s affirmation',
         date: 'November 20, 2020',
         preview: 'Today\'s affirmation',
-        text: 'I wanna sleep',
-        //image: './pic_one.jpg',
+        text: 'I want to sleep so badly, I think I probably could fall asleep while sleeping. It\'s 1 a.m.' +
+            'Благоприятный день для общения. К вашему мнению прислушаются даже те, кто раньше интересовался только собственной точкой зрения. Можно найти помощников, единомышленников. Сегодня вы многому научитесь, получите новый опыт, который вскоре пригодится.\n' +
+            '\n' +
+            'Вероятны какие-то необычные встречи, вдохновляющие знакомства. Вам легко произвести хорошее впечатление: достаточно вести себя естественно, даже стараться не надо. Не исключено, что вы подружитесь с человеком, о котором прежде слышали много интересного.\n',
+        image: '/src/components/public/pic_one.jpg',
+    },
+    {
+        title: 'Weather',
+        date: 'November 20, 2020',
+        preview: 'Beware: spoiler!',
+        text: 'It\'s cold and windy. Stay home. Winter sucks. It lasts for 9 fckng months how can that be even possible ' +
+            'there\'re some people who like it',
+        image: '/src/components/public/pic_two.jpg',
     },
     {
         title: 'Weather',
         date: 'November 20, 2020',
         preview: 'Beware: spoiler!',
         text: 'It\'s cold and windy. Stay home',
-        //image: './pic_two.jpg',
-    },
-    {
-        title: 'Weather',
-        date: 'November 20, 2020',
-        preview: 'Beware: spoiler!',
-        text: 'It\'s cold and windy. Stay home',
-        //image: './pic_two.jpg',
+        image: '/src/components/public/pic_one.jpg',
     }
 ]
 
@@ -55,7 +59,8 @@ const useStyles = makeStyles((theme) => ({
     media: {
         height: 0,
         paddingTop: '56.25%',
-    }
+    },
+
 }));
 
 
@@ -73,13 +78,18 @@ function Article(props) {                        //   одна статья ----
 
     return (
         <Card className={'article'}>
-            <CardHeader title={title} subheader={date} />
-            <div className="media">
-
-            </div>
+            <CardHeader title={title} />
+            <CardMedia
+                className={classes.media}
+                image={image}
+                title={'pic'}
+            />
             <CardContent>
                 <Typography variant={'body2'} color={'textSecondary'} component={'p'}>
                     {preview}
+                </Typography>
+                <Typography variant={'body2'} color={'textSecondary'} component={'p'}>
+                    {date}
                 </Typography>
             </CardContent>
             <CardActions disableSpacing>
@@ -95,7 +105,7 @@ function Article(props) {                        //   одна статья ----
             </CardActions>
             <Collapse in={expanded} timeout={"auto"} unmountOnExit>
                 <CardContent>
-                    <Typography paragraph>
+                    <Typography paragraph className={"typ"}>
                         {text}
                     </Typography>
                 </CardContent>
@@ -264,7 +274,7 @@ function Auth() {
                             />
                         </label>
                     </p>
-                    <p><Button type="submit" disabled={!name || !email || !password}>Submit</Button></p>
+                    <p><Button type="submit" disabled={!email || !password}>Submit</Button></p>
                 </div>
                 <div className="right">
                     <span className="rightpart">Na<br/>dne</span>

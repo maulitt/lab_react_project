@@ -177,12 +177,9 @@ input[type="text"]:focus {
     transition: 0.2s ease;
 }
 
-.media {
-    background: url('https://images.unsplash.com/photo-1559825481-12a05cc00344?ixlib=rb-1.2.1&w=1000&q=80');
-    padding-top: 56.5%;
-    height: 0;
+.typ {
+    text-align: left;
 }
-
 .news {
     overflow-y: visible;
 }

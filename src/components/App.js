@@ -2,41 +2,56 @@ import '../styles/App.css';
 import {A, useRoutes} from 'hookrouter';
 import React, {useState} from 'react';
 import Button from '@material-ui/core/Button';
-import PropTypes from 'prop-types';
+import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/CardHeader";
+import {makeStyles} from "@material-ui/core/styles";
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
+import IconButton from "@material-ui/core/IconButton";
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 
 let my_news_example = [
     {
-        author: 'Regina',
-        text: 'I wanna sleep'
+        title: 'Regina',
+        date: 'November 20, 2020',
+        preview: 'Today\'s affirmation',
+        text: 'I wanna sleep',
     },
     {
-        author: 'Weather',
-        text: 'It\'s cold and windy. Stay home'
+        title: 'Weather',
+        date: 'November 20, 2020',
+        preview: 'Beware: spoiler!',
+        text: 'It\'s cold and windy. Stay home',
     }
 ]
 
+const useStyles = makeStyles({
+    root: {
+        maxWidth: 345,
+    },
+})
 
-function Article(props) {
-    Article.PropTypes = {
-        data: Article.PropTypes.shape({
-            author: Article.PropTypes.string.isRequired,
-            text: Article.PropTypes.string.isRequired,
-        })
-    };
-    let author = props.data.author;
+
+function Article(props) {                        //   одна статья --------------------------------------------
+    const classes = useStyles();
+    let title = props.data.title;
+    let preview = props.data.preview;
     let text = props.data.text;
+    let date = props.date;
     return (
-        <div className={'article'}>
-            <p className={'article_author'}>{author}</p>
+        <Card className={'article'}>
+            <CardHeader title={title} subheader={date} />
+            <CardContent>
+                <Typography variant={'body2'} color={'textSecondary'} component={'p'}>
+                    {preview}
+                </Typography>
+            </CardContent>
             <p className={'article_text'}>{text}</p>
-        </div>
+        </Card>
     );
 }
-function News(props) {
-    News.PropTypes = {
-        data: News.PropTypes.array.isRequired
-    };
+function News(props) {                          //   лента статей --------------------------------------------
     let newsTemplate;
     let data = props.data;
 
@@ -95,9 +110,9 @@ function Main() {
 }
 
 function Register() {
-    const [name, setName] = useState("Name");
-    const [email, setEmail] = useState("email");
-    const [password, setPassword] = useState("password");
+    const [name, setName] = useState();
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
     const submit = (e) => {
         e.preventDefault();
         alert(name+' '+password+' '+email);
@@ -126,6 +141,7 @@ function Register() {
                                 value={name}
                                 name="name"
                                 type="text" size="40"
+                                placeholder={'Your name..'}
                                 onChange={event => { setName(event.target.value) } }
                             />
                         </label>
@@ -136,6 +152,7 @@ function Register() {
                                 value={email}
                                 name="email"
                                 type="text" size="40"
+                                placeholder={'Your e-mail..'}
                                 onChange={event => { setEmail(event.target.value) } }
                             />
                         </label>
@@ -146,11 +163,12 @@ function Register() {
                                 value={password}
                                 name="password"
                                 type="text" size="40"
+                                placeholder={'Your password..'}
                                 onChange={event => { setPassword(event.target.value) } }
                             />
                         </label>
                     </p>
-                    <p><button type="submit" onClick={createUser(name, email, password)}>Submit</button></p>
+                    <p><Button type="submit" disabled={!name || !email || !password} onClick={createUser(name, email, password)}>Submit</Button></p>
                 </div>
                 <div className="right">
                     <span className="rightpart">Na<br/>dne</span>
@@ -161,8 +179,8 @@ function Register() {
 }
 
 function Auth() {
-    const [email, setEmail] = useState("email");
-    const [password, setPassword] = useState("password");
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
     const submit = (e) => {
         e.preventDefault();
         alert(password+' '+email);
@@ -178,6 +196,7 @@ function Auth() {
                                 value={email}
                                 name="email"
                                 type="text" size="40"
+                                placeholder={'Your e-mail..'}
                                 onChange={event => { setEmail(event.target.value) } }
                             />
                         </label>
@@ -188,11 +207,12 @@ function Auth() {
                                 value={password}
                                 name="password"
                                 type="text" size="40"
+                                placeholder={'Your password..'}
                                 onChange={event => { setPassword(event.target.value) } }
                             />
                         </label>
                     </p>
-                    <p><input type="submit" value="Submit" /></p>
+                    <p><Button type="submit" disabled={!name || !email || !password}>Submit</Button></p>
                 </div>
                 <div className="right">
                     <span className="rightpart">Na<br/>dne</span>

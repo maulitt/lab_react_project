@@ -9,28 +9,54 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
+import CardActions from '@material-ui/core/CardActions';
+import clsx from 'clsx';
+import Collapse from '@material-ui/core/Collapse';
+import CardMedia from '@material-ui/core/CardMedia';
 
 let my_news_example = [
     {
-        title: 'Regina',
+        title: 'Today\'s affirmation',
         date: 'November 20, 2020',
         preview: 'Today\'s affirmation',
         text: 'I wanna sleep',
+        //image: './pic_one.jpg',
     },
     {
         title: 'Weather',
         date: 'November 20, 2020',
         preview: 'Beware: spoiler!',
         text: 'It\'s cold and windy. Stay home',
+        //image: './pic_two.jpg',
+    },
+    {
+        title: 'Weather',
+        date: 'November 20, 2020',
+        preview: 'Beware: spoiler!',
+        text: 'It\'s cold and windy. Stay home',
+        //image: './pic_two.jpg',
     }
 ]
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     root: {
         maxWidth: 345,
     },
-})
+    expand: {
+        transform: 'rotate(0deg)',
+        marginLeft: 'auto',
+        transition: theme.transitions.create('transform', {
+            duration: theme.transitions.duration.shortest,
+        }),
+    },
+    expandOpen: {
+        transform: 'rotate(180deg)',
+    },
+    media: {
+        height: 0,
+        paddingTop: '56.25%',
+    }
+}));
 
 
 function Article(props) {                        //   одна статья --------------------------------------------
@@ -39,15 +65,41 @@ function Article(props) {                        //   одна статья ----
     let preview = props.data.preview;
     let text = props.data.text;
     let date = props.date;
+    let image = props.data.image;
+    const [expanded, setExpanded] = useState(false);
+    const handleExpandClick = () => {
+        setExpanded(!expanded);
+    }
+
     return (
         <Card className={'article'}>
             <CardHeader title={title} subheader={date} />
+            <div className="media">
+
+            </div>
             <CardContent>
                 <Typography variant={'body2'} color={'textSecondary'} component={'p'}>
                     {preview}
                 </Typography>
             </CardContent>
-            <p className={'article_text'}>{text}</p>
+            <CardActions disableSpacing>
+                <IconButton
+                    className={clsx(classes.expand, {
+                        [classes.expandOpen]: expanded,
+                    })}
+                    onClick={handleExpandClick}
+                    aria-expanded={expanded}
+                    aria-label={'show more'}>
+                    <ExpandMoreIcon />
+                </IconButton>
+            </CardActions>
+            <Collapse in={expanded} timeout={"auto"} unmountOnExit>
+                <CardContent>
+                    <Typography paragraph>
+                        {text}
+                    </Typography>
+                </CardContent>
+            </Collapse>
         </Card>
     );
 }
@@ -132,7 +184,7 @@ function Register() {
     }
     return (
         <form onSubmit={submit}>
-            <div id="regi">
+            <div id="mainy">
                 <div className="registration">
                     <h1>Sign up</h1>
                     <p><b>Ваше имя</b> <br />
@@ -187,7 +239,7 @@ function Auth() {
     }
     return (
         <form onSubmit={submit}>
-            <div id="authi">
+            <div id="mainy">
                 <div className="registration">
                     <h1>Sign in</h1>
                     <p><b>Ваш логин (e-mail)</b> <br />
@@ -244,10 +296,8 @@ const App = () => {
     const match = useRoutes(Routes);
     return (
         <div className={"App"}>
-            <nav>
                 <Menu />
                 {match}
-            </nav>
         </div>
     );
 }

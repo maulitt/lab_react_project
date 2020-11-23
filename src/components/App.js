@@ -284,7 +284,7 @@ const Routes = {
 
 function Menu() {
     return (
-        <div className={"App"}>
+        <div className={"menu"}>
             <A href={"/"}>Main</A>
             <A href={"/register"}>Registration</A>
             <A href={"/auth"}>Authentication</A>

@@ -1,5 +1,5 @@
 import '../styles/App.css';
-import {A, useRoutes} from 'hookrouter';
+import {A, navigate, useRoutes} from 'hookrouter';
 import React, {useState} from 'react';
 import Button from '@material-ui/core/Button';
 import Card from "@material-ui/core/Card";
@@ -18,12 +18,12 @@ let my_news_example = [
     {
         title: 'Today\'s affirmation',
         date: 'November 20, 2020',
-        preview: 'Today\'s affirmation',
-        text: 'I want to sleep so badly, I think I probably could fall asleep while sleeping. It\'s 1 a.m.' +
+        preview: 'Describing what happened to me',
+        text: 'I want to sleep so badly, I think I probably could fall asleep while sleeping. It\'s 1 a.m. ' +
             'Благоприятный день для общения. К вашему мнению прислушаются даже те, кто раньше интересовался только собственной точкой зрения. Можно найти помощников, единомышленников. Сегодня вы многому научитесь, получите новый опыт, который вскоре пригодится.\n' +
             '\n' +
             'Вероятны какие-то необычные встречи, вдохновляющие знакомства. Вам легко произвести хорошее впечатление: достаточно вести себя естественно, даже стараться не надо. Не исключено, что вы подружитесь с человеком, о котором прежде слышали много интересного.\n',
-        image: '/src/components/public/pic_one.jpg',
+        //image: '/src/components/public/pic_one.jpg',
     },
     {
         title: 'Weather',
@@ -31,14 +31,14 @@ let my_news_example = [
         preview: 'Beware: spoiler!',
         text: 'It\'s cold and windy. Stay home. Winter sucks. It lasts for 9 fckng months how can that be even possible ' +
             'there\'re some people who like it',
-        image: '/src/components/public/pic_two.jpg',
+        //image: '/src/components/public/pic_two.jpg',
     },
     {
         title: 'Weather',
         date: 'November 20, 2020',
         preview: 'Beware: spoiler!',
         text: 'It\'s cold and windy. Stay home',
-        image: '/src/components/public/pic_one.jpg',
+        //image: '/src/components/public/pic_one.jpg',
     }
 ]
 
@@ -56,21 +56,24 @@ const useStyles = makeStyles((theme) => ({
     expandOpen: {
         transform: 'rotate(180deg)',
     },
-    media: {
+    header: {
+        fontSize: '1.2rem'
+    }
+    /*media: {
         height: 0,
         paddingTop: '56.25%',
-    },
+    },*/
 
 }));
 
 
-function Article(props) {                        //   одна статья --------------------------------------------
+function Article(props) {                        //   одна статья ---------------------------------------------------
     const classes = useStyles();
     let title = props.data.title;
     let preview = props.data.preview;
     let text = props.data.text;
     let date = props.date;
-    let image = props.data.image;
+
     const [expanded, setExpanded] = useState(false);
     const handleExpandClick = () => {
         setExpanded(!expanded);
@@ -78,18 +81,10 @@ function Article(props) {                        //   одна статья ----
 
     return (
         <Card className={'article'}>
-            <CardHeader title={title} />
-            <CardMedia
-                className={classes.media}
-                image={image}
-                title={'pic'}
-            />
+            <CardHeader className={classes.header} title={title} subtitle={date} />
             <CardContent>
                 <Typography variant={'body2'} color={'textSecondary'} component={'p'}>
                     {preview}
-                </Typography>
-                <Typography variant={'body2'} color={'textSecondary'} component={'p'}>
-                    {date}
                 </Typography>
             </CardContent>
             <CardActions disableSpacing>
@@ -105,15 +100,17 @@ function Article(props) {                        //   одна статья ----
             </CardActions>
             <Collapse in={expanded} timeout={"auto"} unmountOnExit>
                 <CardContent>
-                    <Typography paragraph className={"typ"}>
-                        {text}
+                    <Typography className={"typ"} paragraph={true}>
+                        {text.split("\n").map((i, key) => {  //  чтобы параграфы разделялись
+                            return <p key={key}>{i}</p>
+                        })}
                     </Typography>
                 </CardContent>
             </Collapse>
         </Card>
     );
 }
-function News(props) {                          //   лента статей --------------------------------------------
+function News(props) {                          //   лента статей -------------------------------------------------
     let newsTemplate;
     let data = props.data;
 
@@ -149,13 +146,13 @@ function Test(props) {
 
 
 function Main() {
-    function GETCcheck() {
-        fetch('http://127.0.0.1:3000/api/proverka', {
+    function GETCheck() {
+        fetch('/api/proverka', {
             method: 'GET',
         })
-            .then(response => {return response.text();})
+            .then(response => {return response.json();})
             .then(data => {
-                console.log(data);
+                alert(data.success);
             });
     }
 
@@ -165,7 +162,7 @@ function Main() {
                 <h1>Main page</h1>
                 <p>Of the app</p>
                 <Test user={'name'}/>
-                <Button color="primary" type="submit" onClick={GETCcheck}>OK</Button>
+                <Button color="primary" type="submit" onClick={GETCheck}>OK</Button>
             </div>
         </div>
     )
@@ -175,10 +172,6 @@ function Register() {
     const [name, setName] = useState();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
-    const submit = (e) => {
-        e.preventDefault();
-        alert(name+' '+password+' '+email);
-    }
     function createUser(name, email, password) {
         fetch('/api/resource', {
             method: 'POST',
@@ -187,13 +180,17 @@ function Register() {
             },
             body: JSON.stringify({ name: name, email: email, password: password }),
         })
-            .then(response => {return response.text();})
+            .then(response => {return response.json();})
             .then(data => {
-                alert(data);
+                //if(data.success){alert(data.success);}
             });
     }
+    const handleSubmit = event => {
+        event.preventDefault();
+        createUser(name, email, password);
+    }
     return (
-        <form onSubmit={submit}>
+        <form>
             <div id="mainy">
                 <div className="registration">
                     <h1>Sign up</h1>
@@ -230,7 +227,7 @@ function Register() {
                             />
                         </label>
                     </p>
-                    <p><Button type="submit" disabled={!name || !email || !password} onClick={createUser(name, email, password)}>Submit</Button></p>
+                    <p><Button type="submit" disabled={!name || !email || !password} onClick={handleSubmit}>Submit</Button></p>
                 </div>
                 <div className="right">
                     <span className="rightpart">Na<br/>dne</span>
@@ -243,12 +240,26 @@ function Register() {
 function Auth() {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
-    const submit = (e) => {
+    function authUser(email, password) {
+        fetch('/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email: email, password: password }),
+        })
+            .then(response => {return response.json();})
+            .then(data => {
+                //alert(data.message);
+            });
+    }
+    const handleSubmit = e => {
         e.preventDefault();
-        alert(password+' '+email);
+        authUser(email, password);
+        navigate('/news');
     }
     return (
-        <form onSubmit={submit}>
+        <form>
             <div id="mainy">
                 <div className="registration">
                     <h1>Sign in</h1>
@@ -274,7 +285,7 @@ function Auth() {
                             />
                         </label>
                     </p>
-                    <p><Button type="submit" disabled={!email || !password}>Submit</Button></p>
+                    <p><Button type="submit" disabled={!email || !password} onClick={handleSubmit}>Submit</Button></p>
                 </div>
                 <div className="right">
                     <span className="rightpart">Na<br/>dne</span>

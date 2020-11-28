@@ -180,9 +180,15 @@ input[type="text"]:focus {
 .typ {
     text-align: left;
 }
-.news {
-    overflow-y: visible;
-}
 
+textarea {
+    width: 100%;
+    resize: vertical;
+    padding: 15px;
+    border-radius: 15px;
+    border: 0;
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.06);
+    height: 150px;
+}
 
 

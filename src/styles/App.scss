@@ -21,10 +21,9 @@ body {
 .menu{
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
     width: 100vw;
-    /*position: absolute;*/
-    left: 12px;
+    left: 0px;
     top:50px;
     margin: 2%;
 
@@ -51,7 +50,7 @@ body {
     width: 100%;
     height: 3px;
     background:white;
-    left: 12px;
+    left: 0px;
     top:47%;
     animation:out 0.2s cubic-bezier(1, 0, 0.58, 0.97) 1 both;
 }
@@ -84,8 +83,48 @@ body {
     }
 }
 .article {
+    top: 60px;
     margin: 2% auto;
     max-width: 800px;
+}
+#add {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin: 5% auto;
+    width: 900px;
+    height: 800px;
+    background: #FFF;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+.addnew {
+    resize: vertical;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    padding: 40px;
+    width: 900px;
+    height: 800px;
+    background: url('https://images.unsplash.com/photo-1559825481-12a05cc00344?ixlib=rb-1.2.1&w=1000&q=80');
+    background-size: cover;
+    background-position: center;
+    border-radius: 0 2px 2px 0;
+}
+
+.addnew h1 {
+    margin: 0 0 20px 0;
+    color: white;
+    font-weight: 300;
+    font-size: 28px;
+}
+
+.addnew b {
+    margin: auto 20px;
+    color: white;
+    font-weight: 100;
+    font-size: 20px;
 }
 
 #mainy {
@@ -177,18 +216,52 @@ input[type="text"]:focus {
     transition: 0.2s ease;
 }
 
+input[name="title"] {
+    display: block;
+    box-sizing: border-box;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 15px;
+    width: 100%;
+    height: 32px;
+    border: none;
+    border-radius: 5px 2px 5px 2px;
+    border-bottom: 1px solid #AAA;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    transition: 0.2s ease;
+}
+
+
 .typ {
     text-align: left;
 }
 
-textarea {
+textarea[name="preview"] {
+    display: block;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 20px;
     width: 100%;
     resize: vertical;
     padding: 15px;
     border-radius: 15px;
     border: 0;
     box-shadow: 4px 4px 10px rgba(0,0,0,0.06);
-    height: 150px;
+    height: 90px;
 }
-
+textarea[name="text"] {
+    font-family: 'Roboto', sans-serif;
+    display: block;
+    box-sizing: border-box;
+    margin-top: 20px;
+    width: 100%;
+    resize: vertical;
+    padding: 15px;
+    border-radius: 15px;
+    border: 0;
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.06);
+    height: 300px;
+}
 

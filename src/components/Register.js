@@ -1,11 +1,12 @@
 import React, {useState} from "react";
 import Button from "@material-ui/core/Button";
+import {navigate} from "hookrouter";
 
 export function Register() {
     const [name, setName] = useState();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
-    function createUser(name, email, password) {
+    function createUser() {
         fetch('/api/resource', {
             method: 'POST',
             headers: {
@@ -15,12 +16,18 @@ export function Register() {
         })
             .then(response => {return response.json();})
             .then(data => {
-                //if(data.success){alert(data.success);}
+                if(data.message === 'okey') {
+                    navigate('/news');
+                }
+                else {
+                    alert('Something went wrong!');
+                }
             });
     }
     const handleSubmit = event => {
         event.preventDefault();
-        createUser(name, email, password);
+        createUser();
+        //navigate('/news');
     }
     return (
         <form>

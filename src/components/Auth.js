@@ -5,7 +5,8 @@ import Button from "@material-ui/core/Button";
 export function Auth() {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
-    function authUser(email, password) {
+    let [isAuthed, setIsAuthed] = useState(true);
+    function authUser() {
         fetch('/api/login', {
             method: 'POST',
             headers: {
@@ -13,16 +14,24 @@ export function Auth() {
             },
             body: JSON.stringify({ email: email, password: password }),
         })
-            .then(response => {return response.json();})
-            .then(data => {
-                //alert(data.message);
+            .then(response => {return response.json().then(data => {
+                if(data.message === "fine") {
+                    isAuthed = !isAuthed;
+                    //setIsAuthed(true);
+                    //console.log('after setIsAuthed');
+                    //alert(data.message+isAuthed);
+                    //return navigate('/news');
+                }
+            });
             });
     }
     const handleSubmit = e => {
         e.preventDefault();
-        authUser(email, password);
-        navigate('/news');
-    }
+        authUser();
+        if(isAuthed) {
+            navigate('/news');
+        }
+   }
     return (
         <form>
             <div id="mainy">
@@ -50,7 +59,12 @@ export function Auth() {
                             />
                         </label>
                     </p>
-                    <p><Button type="submit" disabled={!email || !password} onClick={handleSubmit}>Submit</Button></p>
+                    <p><Button type="submit" disabled={!email || !password} onClick={()=> {
+                        console.log('it\'s a handler!')
+                        authUser();
+                        if(isAuthed) {return navigate('/news');}
+                        else {console.log('Wrong credentials!'+isAuthed);}
+                    }}>Submit</Button></p>
                 </div>
                 <div className="right">
                     <span className="rightpart">Na<br/>dne</span>

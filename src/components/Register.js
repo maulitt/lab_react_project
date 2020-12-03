@@ -27,7 +27,6 @@ export function Register() {
     const handleSubmit = event => {
         event.preventDefault();
         createUser();
-        //navigate('/news');
     }
     return (
         <form>

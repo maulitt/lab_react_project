@@ -7,6 +7,7 @@ import { Register } from './Register';
 import { News } from './News';
 import { AddNews } from "./AddNews";
 import { Main } from "./Main";
+import { NotFound } from "./NotFound";
 
 let my_news_example = [
     {
@@ -61,7 +62,7 @@ function Menu() {
     )
 }
 const App = () => {
-    const match = useRoutes(Routes);
+    const match = useRoutes(Routes) || <NotFound />;
     return (
         <div className={"App"}>
                 <Menu />

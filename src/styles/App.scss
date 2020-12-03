@@ -1,4 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
+@import url(https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600;900&display=swap);
+
+
 *:focus {
     outline: none;
 }
@@ -121,6 +124,7 @@ body {
 }
 
 .addnew b {
+    font-family: 'Roboto', cursive;
     margin: auto 20px;
     color: white;
     font-weight: 100;
@@ -265,3 +269,36 @@ textarea[name="text"] {
     height: 300px;
 }
 
+
+
+.mainbox {
+    margin: auto;
+    height: 600px;
+    width: 600px;
+    position: relative;
+}
+.message {
+    text-align: center;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 1.6rem;
+    position: absolute;
+    left: 14%;
+    top: 45%;
+    width: 75%;
+}
+.err {
+    color: #FFFFFF;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 11rem;
+    position: absolute;
+    left: 20%;
+    top: 8%;
+}
+
+.mainbox a {
+    text-decoration: none;
+    color: white;
+}
+.mainbox a:hover {
+    text-decoration: underline;
+}

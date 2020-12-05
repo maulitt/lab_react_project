@@ -1,20 +1,48 @@
 import React, {useState} from "react";
 import Button from "@material-ui/core/Button";
+import {navigate} from "hookrouter";
 
 export function AddNews() {
     const [title, setTitle] = useState();
     const [preview, setPreview] = useState();
-    const [date, setDate] = useState();
+    const [author, setAuthor] = useState();
     const [text, setText] = useState();
     function handleSubmit(event) {
         event.preventDefault();
-        alert('С ДНЁМ МАМЫ, МАМА! <3 <3');
+        createArticle();
+        //alert('С ДНЁМ МАМЫ, МАМА! <3 <3');
+    }
+    function createArticle() {
+        fetch('/api/add', {
+            credentials: "include",
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ author: author, title: title, preview: preview, text: text }),
+        })
+            .then(response => {return response.json();})
+            .then(data => {
+                alert(data.message);
+            });
     }
     return(
         <form>
             <div id="add">
                 <div className="addnew">
                     <h1>What's up?</h1>
+                    <p><b>Author's name</b>
+                        <label>
+                            <input
+                                value={author}
+                                name="title"
+                                type="text" size="40"
+                                placeholder={'How do you want us to call you,dear?..'}
+                                maxLength={100}
+                                onChange={event => { setAuthor(event.target.value) } }
+                            />
+                        </label>
+                    </p>
                     <p><b>Title</b>
                         <label>
                             <input

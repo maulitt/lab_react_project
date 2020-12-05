@@ -96,7 +96,7 @@ body {
     position: relative;
     margin: 5% auto;
     width: 900px;
-    height: 800px;
+    height: 860px;
     background: #FFF;
     border-radius: 2px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
@@ -109,7 +109,7 @@ body {
     box-sizing: border-box;
     padding: 40px;
     width: 900px;
-    height: 800px;
+    height: 860px;
     background: url('https://images.unsplash.com/photo-1559825481-12a05cc00344?ixlib=rb-1.2.1&w=1000&q=80');
     background-size: cover;
     background-position: center;
@@ -271,7 +271,7 @@ textarea[name="text"] {
 
 
 
-.mainbox {
+.errorbox {
     margin: auto;
     height: 600px;
     width: 600px;
@@ -295,10 +295,10 @@ textarea[name="text"] {
     top: 8%;
 }
 
-.mainbox a {
+.errorbox a {
     text-decoration: none;
     color: white;
 }
-.mainbox a:hover {
+.errorbox a:hover {
     text-decoration: underline;
 }

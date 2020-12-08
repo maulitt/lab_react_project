@@ -1,15 +1,15 @@
 import '../styles/App.scss';
-import {A, navigate, useRoutes} from 'hookrouter';
-import React, {useState} from 'react';
+import {A, useRoutes} from 'hookrouter';
+import React from 'react';
 
 import { createMuiTheme } from '@material-ui/core/styles';
 import { Auth } from './Auth';
 import { Register } from './Register';
-import {GetNews, News} from './News';
+import { GetNews } from './News';
 import { AddNews } from "./AddNews";
 import { Main } from "./Main";
 import { NotFound } from "./NotFound";
-import Button from "@material-ui/core/Button";
+import { AddButton } from "./AddButton";
 
 let my_news_example = [
     {
@@ -20,7 +20,6 @@ let my_news_example = [
             'Благоприятный день для общения. К вашему мнению прислушаются даже те, кто раньше интересовался только собственной точкой зрения. Можно найти помощников, единомышленников. Сегодня вы многому научитесь, получите новый опыт, который вскоре пригодится.\n' +
             '\n' +
             'Вероятны какие-то необычные встречи, вдохновляющие знакомства. Вам легко произвести хорошее впечатление: достаточно вести себя естественно, даже стараться не надо. Не исключено, что вы подружитесь с человеком, о котором прежде слышали много интересного.\n',
-        //image: '/src/components/public/pic_one.jpg',
     },
     {
         title: 'Weather',
@@ -28,7 +27,6 @@ let my_news_example = [
         preview: 'Beware: spoiler!',
         text: 'It\'s cold and windy. Stay home. Winter sucks. It lasts for 9 fckng months how can that be even possible ' +
             'there\'re some people who like it',
-        //image: '/src/components/public/pic_two.jpg',
     },
     {
         title: 'Horoscope for Libras for November',
@@ -39,7 +37,6 @@ let my_news_example = [
             'Позитивные тенденции набирают силу постепенно, но вы замечаете даже небольшие перемены. Улучшается настроение, на многие проблемы удается посмотреть по-новому, и именно это помогает найти их решение. Середина месяца подходит для учебы, обмена опытом, а также для общения с людьми, которые в чем-то стали для вас примером.\n' +
             '\n' +
             'Конец ноября будет интересным и приятным. Вас ждут неожиданности, подарки, сюрпризы и знаки внимания. Возможны значительные перемены к лучшему в отношениях с самыми близкими вам людьми.',
-        //image: '/src/components/public/pic_one.jpg',
     }
 ]
 
@@ -83,31 +80,7 @@ const theme = createMuiTheme({
         }
     }
 })
-function AddButton() {
-    function isAuthorized() {
-        fetch('/api/cookiecheck', {
-            credentials: "include",
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-            .then(response => {return response.json();})
-            .then(data => {
-                if(data.message === 'okey') {
-                    navigate('/add');
-                }
-                else {
-                    alert('You should authenticate first!');
-                }
-            });
-    }
-    return (
-        <div className={'addbutton'}>
-            <Button variant="contained" color="#9500ae" onClick={()=>{ isAuthorized(); }}>+</Button>
-        </div>
-    );
-}
+
 
 
 export default App;

@@ -32,7 +32,6 @@ const useStyles = makeStyles((theme) => ({
         height: 0,
         paddingTop: '56.25%',
     },*/
-
 }));
 
 export function Article(props) {                        //   одна статья ---------------------------------------------------
@@ -82,9 +81,6 @@ export function Article(props) {                        //   одна стать
 export function News(props) {                          //   лента статей -------------------------------------------------
     let newsTemplate;
     let data = props.data;
-    //function getArticles() {
-      //  fetch('/api/articles', )
-    //}
 
     if (data.length > 0) {
         newsTemplate = data.map(function(item, index) {
@@ -105,8 +101,8 @@ export function News(props) {                          //   лента стат�
         </div>
     );
 }
-export function GetNews() {
-    const [articles, setArticles] = useState([]);
+export function GetNews() {                                   // отображение статей из базы данных-----------------------
+    const [articles, setArticles] = useState([]);   //  (передаю компоненту News всю дату)
     function getArticles() {
         fetch('/api/articles', {
             method: 'GET',

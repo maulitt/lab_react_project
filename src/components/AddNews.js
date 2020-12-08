@@ -12,6 +12,7 @@ export function AddNews() {
         createArticle();
         //alert('С ДНЁМ МАМЫ, МАМА! <3 <3');
     }
+
     function createArticle() {
         fetch('/api/add', {
             credentials: "include",

@@ -81,5 +81,4 @@ export function AddNews() {
             </div>
         </form>
     )
-
 }

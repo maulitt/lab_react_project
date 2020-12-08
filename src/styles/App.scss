@@ -90,6 +90,10 @@ body {
     margin: 2% auto;
     max-width: 800px;
 }
+
+
+
+/* _____________________________________всё для страницы добавления новости __________________________________________*/
 #add {
     display: flex;
     justify-content: center;
@@ -115,14 +119,12 @@ body {
     background-position: center;
     border-radius: 0 2px 2px 0;
 }
-
 .addnew h1 {
     margin: 0 0 20px 0;
     color: white;
     font-weight: 300;
     font-size: 28px;
 }
-
 .addnew b {
     font-family: 'Roboto', cursive;
     margin: auto 20px;
@@ -131,6 +133,21 @@ body {
     font-size: 20px;
 }
 
+.addbutton Button{
+    position: fixed;
+    border-radius: 50%;
+    font-size: 40px;
+    font-family: 'Nunito Sans', sans-serif;
+    color: bisque;
+    width: 60px;
+    height: 60px;
+    bottom: 80px;
+    right: 80px;
+    background: url('https://static.euronews.com/articles/stories/04/76/47/46/945x531_cmsv2_3df9fae1-ac64-5f15-96e8-d80daac5281a-4764746.jpg');
+}
+
+
+/*___________________________________________для главной страницы_____________________________________________________*/
 #mainy {
     display: flex;
     justify-content: center;
@@ -156,6 +173,19 @@ body {
     background-position: center;
     border-radius: 0 2px 2px 0;
 }
+.mainpage h1 {
+    margin: 0 0 20px 0;
+    color: white;
+    font-weight: 300;
+    font-size: 28px;
+}
+h1 {
+    margin: 0 0 20px 0;
+    color: black;
+    font-weight: 300;
+    font-size: 28px;
+}
+/*__________________________________________регистрация и авторизация_________________________________________________*/
 .registration {
     position: absolute;
     top: 0;
@@ -188,18 +218,7 @@ body {
     color: #FFF;
     text-align: center;
 }
-.mainpage h1 {
-    margin: 0 0 20px 0;
-    color: white;
-    font-weight: 300;
-    font-size: 28px;
-}
-h1 {
-    margin: 0 0 20px 0;
-    color: black;
-    font-weight: 300;
-    font-size: 28px;
-}
+/*_______________________________________________всякие поля вводилки_________________________________________________*/
 input[type="text"] {
     display: block;
     box-sizing: border-box;
@@ -219,7 +238,6 @@ input[type="text"]:focus {
     color: darkslategrey;
     transition: 0.2s ease;
 }
-
 input[name="title"] {
     display: block;
     box-sizing: border-box;
@@ -237,9 +255,8 @@ input[name="title"] {
     transition: 0.2s ease;
 }
 
-
 .typ {
-    text-align: left;
+    text-align: left; /*чтобы текст в новостях по левому краю выравнивался*/
 }
 
 textarea[name="preview"] {
@@ -270,7 +287,7 @@ textarea[name="text"] {
 }
 
 
-
+/*___________________________________________________страница 404_____________________________________________________*/
 .errorbox {
     margin: auto;
     height: 600px;
@@ -294,7 +311,6 @@ textarea[name="text"] {
     left: 20%;
     top: 8%;
 }
-
 .errorbox a {
     text-decoration: none;
     color: white;

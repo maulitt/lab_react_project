@@ -9,7 +9,7 @@ import clsx from "clsx";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Collapse from "@material-ui/core/Collapse";
 import {makeStyles} from "@material-ui/core/styles";
-
+import { useEffect } from "react";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -101,8 +101,37 @@ export function News(props) {                          //   лента стат�
         </div>
     );
 }
+
+export class Getty extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            articles: []
+        };
+    }
+    getArticles() {
+        fetch('/api/articles', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then((response => {return response.json();}))
+            .then(data => {
+                this.setState({ articles: data });
+            });
+    }
+    componentDidMount() {
+        this.getArticles();
+    }
+    render() {
+        return (
+            <News data={this.state.articles} />
+        )
+    }
+}
 export function GetNews() {                                   // отображение статей из базы данных-----------------------
-    const [articles, setArticles] = useState([]);   //  (передаю компоненту News всю дату)
+    const [articles, setArticles] = useState();               //  (передаю компоненту News всю дату)
     function getArticles() {
         fetch('/api/articles', {
             method: 'GET',
@@ -115,7 +144,8 @@ export function GetNews() {                                   // отображ�
                 setArticles(data);
             });
     }
-    getArticles();
+    useEffect(() => getArticles(), []);
+    //getArticles();
     return (
         <News data={articles} />
     );

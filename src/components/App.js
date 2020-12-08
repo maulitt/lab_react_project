@@ -5,7 +5,7 @@ import React from 'react';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { Auth } from './Auth';
 import { Register } from './Register';
-import { GetNews } from './News';
+import {GetNews, Getty} from './News';
 import { AddNews } from "./AddNews";
 import { Main } from "./Main";
 import { NotFound } from "./NotFound";
@@ -45,7 +45,7 @@ const Routes = {
     "/": () => <Main />,
     "/register": () => <Register />,
     "/auth": () => <Auth />,
-    "/news": () => <GetNews />,
+    "/news": () => <Getty />,
     "/add": () => <AddNews />
 }
 

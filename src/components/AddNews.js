@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import Button from "@material-ui/core/Button";
-import {navigate} from "hookrouter";
+
 
 export function AddNews() {
     const [title, setTitle] = useState();

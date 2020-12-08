@@ -5,7 +5,7 @@ import React, {useState} from 'react';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { Auth } from './Auth';
 import { Register } from './Register';
-import { News } from './News';
+import {GetNews, News} from './News';
 import { AddNews } from "./AddNews";
 import { Main } from "./Main";
 import { NotFound } from "./NotFound";
@@ -14,7 +14,7 @@ import Button from "@material-ui/core/Button";
 let my_news_example = [
     {
         title: 'Today\'s affirmation',
-        date: 'November 20, 2020, Regina',
+        author: 'November 20, 2020, Regina',
         preview: 'Describing what happened to me',
         text: 'I want to sleep so badly, I think I probably could fall asleep while sleeping. It\'s 1 a.m. ' +
             'Благоприятный день для общения. К вашему мнению прислушаются даже те, кто раньше интересовался только собственной точкой зрения. Можно найти помощников, единомышленников. Сегодня вы многому научитесь, получите новый опыт, который вскоре пригодится.\n' +
@@ -24,7 +24,7 @@ let my_news_example = [
     },
     {
         title: 'Weather',
-        date: 'November 20, 2020, Regina',
+        author: 'November 20, 2020, Regina',
         preview: 'Beware: spoiler!',
         text: 'It\'s cold and windy. Stay home. Winter sucks. It lasts for 9 fckng months how can that be even possible ' +
             'there\'re some people who like it',
@@ -32,7 +32,7 @@ let my_news_example = [
     },
     {
         title: 'Horoscope for Libras for November',
-        date: 'November 29, 2020',
+        author: 'November 29, 2020',
         preview: 'Get ready for a new portion of shit!',
         text: 'Не спешите с выводами, если в начале ноября что-то пойдет не по плану. Вскоре ситуация изменится к лучшему, а проблемы останутся в прошлом. Важно не опускать руки, сохранять оптимизм. Не паникуйте, если что-то идет не так, как хотелось бы. Вы наверняка найдете способ справиться с трудностями.\n' +
             '\n' +
@@ -48,7 +48,7 @@ const Routes = {
     "/": () => <Main />,
     "/register": () => <Register />,
     "/auth": () => <Auth />,
-    "/news": () => <News data={my_news_example} />,
+    "/news": () => <GetNews />,
     "/add": () => <AddNews />
 }
 

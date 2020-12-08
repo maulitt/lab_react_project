@@ -40,7 +40,7 @@ export function Article(props) {                        //   одна стать
     let title = props.data.title;
     let preview = props.data.preview;
     let text = props.data.text;
-    let date = props.data.date;
+    let author = props.data.author;
 
     const [expanded, setExpanded] = useState(false);
     const handleExpandClick = () => {
@@ -49,7 +49,7 @@ export function Article(props) {                        //   одна стать
 
     return (
         <Card className={'article'}>
-            <CardHeader className={classes.header} title={title} subheader={date} />
+            <CardHeader className={classes.header} title={title} subheader={author} />
             <CardContent>
                 <Typography variant={'body2'} color={'textSecondary'} component={'p'}>
                     {preview}
@@ -82,6 +82,9 @@ export function Article(props) {                        //   одна стать
 export function News(props) {                          //   лента статей -------------------------------------------------
     let newsTemplate;
     let data = props.data;
+    //function getArticles() {
+      //  fetch('/api/articles', )
+    //}
 
     if (data.length > 0) {
         newsTemplate = data.map(function(item, index) {
@@ -100,5 +103,24 @@ export function News(props) {                          //   лента стат�
             <strong
                 className={'news_count'}>Amount of news: {data.length}</strong>
         </div>
+    );
+}
+export function GetNews() {
+    const [articles, setArticles] = useState([]);
+    function getArticles() {
+        fetch('/api/articles', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then((response => {return response.json();}))
+            .then(data => {
+                setArticles(data);
+            });
+    }
+    getArticles();
+    return (
+        <News data={articles} />
     );
 }

@@ -145,7 +145,7 @@ body {
     right: 80px;
     background: url('https://static.euronews.com/articles/stories/04/76/47/46/945x531_cmsv2_3df9fae1-ac64-5f15-96e8-d80daac5281a-4764746.jpg');
 }
-.deletebutton Button {
+.delbutton Button{
     position: fixed;
     border-radius: 50%;
     font-size: 40px;
@@ -153,8 +153,9 @@ body {
     color: bisque;
     width: 60px;
     height: 60px;
-    bottom: 150px;
-    right: 80px;
+    bottom: 80px;
+    left: 80px;
+    background: url('https://static.euronews.com/articles/stories/04/76/47/46/945x531_cmsv2_3df9fae1-ac64-5f15-96e8-d80daac5281a-4764746.jpg');
 }
 
 

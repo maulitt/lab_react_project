@@ -84,6 +84,6 @@ export function AddNews() {
                     <p><Button type="submit" disabled={!title || !preview || !text} onClick={handleSubmit}>Submit</Button></p>
                 </div>
             </div>
-        </form> : <div><h1>ocean</h1></div>
+        </form> : <div><h1>o</h1></div>
     )
 }

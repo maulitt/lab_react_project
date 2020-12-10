@@ -1,8 +1,7 @@
 import '../styles/App.scss';
 import {A, navigate, useRoutes} from 'hookrouter';
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 
-import { createMuiTheme } from '@material-ui/core/styles';
 import { Auth } from './Auth';
 import { Register } from './Register';
 import {GetNews, Getty} from './News';
@@ -10,7 +9,7 @@ import { AddNews } from "./AddNews";
 import { Main } from "./Main";
 import { NotFound } from "./NotFound";
 import { AddButton } from "./AddButton";
-import Button from "@material-ui/core/Button";
+import { DelButton, Del } from "./DelButton";
 
 let my_news_example = [
     {
@@ -47,7 +46,8 @@ const Routes = {
     "/register": () => <Register />,
     "/auth": () => <Auth />,
     "/news": () => <GetNews />,
-    "/add": () => <AddNews />
+    "/add": () => <AddNews />,
+    "/delete": () => <Del />
 }
 
 function Menu() {
@@ -67,6 +67,7 @@ const App = () => {
                 <Menu />
                 {match}
                 <AddButton />
+                <DelButton />
         </div>
     );
 }

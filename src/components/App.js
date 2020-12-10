@@ -1,6 +1,6 @@
 import '../styles/App.scss';
-import {A, useRoutes} from 'hookrouter';
-import React from 'react';
+import {A, navigate, useRoutes} from 'hookrouter';
+import React, {useEffect, useState} from 'react';
 
 import { createMuiTheme } from '@material-ui/core/styles';
 import { Auth } from './Auth';
@@ -10,6 +10,7 @@ import { AddNews } from "./AddNews";
 import { Main } from "./Main";
 import { NotFound } from "./NotFound";
 import { AddButton } from "./AddButton";
+import Button from "@material-ui/core/Button";
 
 let my_news_example = [
     {
@@ -45,7 +46,7 @@ const Routes = {
     "/": () => <Main />,
     "/register": () => <Register />,
     "/auth": () => <Auth />,
-    "/news": () => <Getty />,
+    "/news": () => <GetNews />,
     "/add": () => <AddNews />
 }
 
@@ -56,7 +57,6 @@ function Menu() {
             <A href={"/register"}>Registration</A>
             <A href={"/auth"}>Authentication</A>
             <A href={"/news"}>News</A>
-            <A href={"/add"}>Add new</A>
         </div>
     )
 }
@@ -70,17 +70,6 @@ const App = () => {
         </div>
     );
 }
-
-
-
-const theme = createMuiTheme({
-    palette: {
-        secondary: {
-            main: '#9500ae'
-        }
-    }
-})
-
 
 
 export default App;

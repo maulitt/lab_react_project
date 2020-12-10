@@ -1,8 +1,10 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Button from "@material-ui/core/Button";
+import {navigate} from "hookrouter";
 
 
 export function AddNews() {
+    const [isAuthed, setIsAuthed] = useState(false);
     const [title, setTitle] = useState();
     const [preview, setPreview] = useState();
     const [text, setText] = useState();
@@ -25,7 +27,23 @@ export function AddNews() {
                 alert(data.message);
             });
     }
-    return(
+    function isAuth() {
+        fetch('/api/cookiecheck', {
+            credentials: "include",
+            method: 'GET'
+        })
+            .then(response => {return response.json();})
+            .then(data => {
+                if(data.message==='okey') {
+                    if(!isAuthed) {
+                        setIsAuthed(true);
+                    }
+                }
+                else { alert('You are not athorized!'); navigate('/news') }
+            })
+    }
+    useEffect(() => {isAuth();}, []);
+    return( isAuth ?
         <form>
             <div id="add">
                 <div className="addnew">
@@ -66,6 +84,6 @@ export function AddNews() {
                     <p><Button type="submit" disabled={!title || !preview || !text} onClick={handleSubmit}>Submit</Button></p>
                 </div>
             </div>
-        </form>
+        </form> : <div><h1>ocean</h1></div>
     )
 }

@@ -131,7 +131,7 @@ export class Getty extends React.Component {
     }
 }
 export function GetNews() {                                   // отображение статей из базы данных-----------------------
-    const [articles, setArticles] = useState();               //  (передаю компоненту News всю дату)
+    const [articles, setArticles] = useState([]);               //  (передаю компоненту News всю дату)
     function getArticles() {
         fetch('/api/articles', {
             method: 'GET',
@@ -141,7 +141,9 @@ export function GetNews() {                                   // отображ�
         })
             .then((response => {return response.json();}))
             .then(data => {
-                setArticles(data);
+                if(articles.length!==data.length) {
+                    setArticles(data);
+                }
             });
     }
     useEffect(() => getArticles(), []);

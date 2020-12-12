@@ -101,7 +101,7 @@ export function News(props) {                          //   лента стат�
         </div>
     );
 }
-
+// I don't use this component, created it just for fun
 export class Getty extends React.Component {
     constructor(props) {
         super(props);
@@ -130,6 +130,8 @@ export class Getty extends React.Component {
         )
     }
 }
+
+
 export function GetNews() {                                   // отображение статей из базы данных-----------------------
     const [articles, setArticles] = useState([]);               //  (передаю компоненту News всю дату)
     function getArticles() {

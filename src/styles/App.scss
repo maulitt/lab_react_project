@@ -208,7 +208,10 @@ h1 {
     height: 400px;
     border-radius: 0 2px 2px 0;
 }
+.registration .check {
+    color: black;
 
+}
 .right {
     position: absolute;
     top: 0;
@@ -231,7 +234,7 @@ h1 {
     text-align: center;
 }
 /*_______________________________________________всякие поля вводилки_________________________________________________*/
-input[type="text"] {
+input[type="text"], input[type="password"] {
     display: block;
     box-sizing: border-box;
     margin-bottom: 20px;
@@ -245,7 +248,7 @@ input[type="text"] {
     font-size: 15px;
     transition: 0.2s ease;
 }
-input[type="text"]:focus {
+input[type="text"]:focus, input[type="password"]:focus {
     border-bottom: 2px solid darkslategrey;
     color: darkslategrey;
     transition: 0.2s ease;

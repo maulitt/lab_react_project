@@ -6,6 +6,7 @@ export function Auth() {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     let [isAuthed, setIsAuthed] = useState(true);
+    const [isShown, setIsShown] = useState(true);
     function authUser() {
         fetch('/api/login', {
             method: 'POST',
@@ -33,7 +34,7 @@ export function Auth() {
             <div id="mainy">
                 <div className="registration">
                     <h1>Sign in</h1>
-                    <p><b>Ваш логин (e-mail)</b> <br />
+                    <p><br />
                         <label>
                             <input
                                 value={email}
@@ -44,15 +45,19 @@ export function Auth() {
                             />
                         </label>
                     </p>
-                    <p><b>Пароль</b> <br />
+                    <p><br />
                         <label>
                             <input
                                 value={password}
                                 name="password"
-                                type="text" size="40"
+                                type={isShown? "password" : "text"}
+                                size="40"
                                 placeholder={'Your password..'}
                                 onChange={event => { setPassword(event.target.value) } }
                             />
+                        </label>
+                        <label className={'check'}>
+                            <input type={'checkbox'} onClick={()=> {setIsShown(!isShown)}}/>Show
                         </label>
                     </p>
                     <p><Button type="submit" disabled={!email || !password} onClick={handleSubmit}>Submit</Button></p>

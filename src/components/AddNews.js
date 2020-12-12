@@ -43,7 +43,7 @@ export function AddNews() {
             })
     }
     useEffect(() => {isAuth();}, []);
-    return( isAuth ?
+    return( isAuthed ?
         <form>
             <div id="add">
                 <div className="addnew">

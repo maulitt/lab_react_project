@@ -36,7 +36,7 @@ export function SearchField() {
             <Paper className={classes.root}>
                 <InputBase
                     className={classes.input}
-                    placeholder={"Search article"}
+                    placeholder={"Tap to search for article"}
                     inputProps={{'aria-label': 'search google maps'}}
                     value={title}
                     onChange={event => { setTitle(event.target.value) } }

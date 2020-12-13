@@ -10,6 +10,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Collapse from "@material-ui/core/Collapse";
 import {makeStyles} from "@material-ui/core/styles";
 import { useEffect } from "react";
+import {DelButton} from "./DelButton";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -81,7 +82,21 @@ export function Article(props) {                        //   одна стать
 export function News(props) {                          //   лента статей -------------------------------------------------
     let newsTemplate;
     let data = props.data;
-
+    const [isAdmin, setIsAdmin] = useState(false);
+    fetch('/api/isadmin', {
+        credentials: "include",
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+        .then(response => {return response.json();})
+        .then(data => {
+            if(data.message==="admin") {
+                if(!isAdmin){setIsAdmin(true)}
+            }
+        });
+    //useEffect(()=> {})
     if (data.length > 0) {
         newsTemplate = data.map(function(item, index) {
             return (
@@ -96,8 +111,8 @@ export function News(props) {                          //   лента стат�
     return (
         <div className={'news'}>
             {newsTemplate}
-            <strong
-                className={'news_count'}>Amount of news: {data.length}</strong>
+            <strong className={'news_count'}>Amount of news: {data.length}</strong>
+            {isAdmin ? <DelButton /> : <div> </div>}
         </div>
     );
 }

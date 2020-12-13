@@ -39,7 +39,6 @@ const App = () => {
                 <Menu />
                 {match}
                 <AddButton />
-                <DelButton />
         </div>
     );
 }

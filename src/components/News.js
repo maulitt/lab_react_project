@@ -14,7 +14,9 @@ import {DelButton} from "./DelButton";
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        maxWidth: 345,
+        top: 60,
+        margin: 40,
+        maxWidth: 800,
     },
     expand: {
         transform: 'rotate(0deg)',
@@ -29,10 +31,6 @@ const useStyles = makeStyles((theme) => ({
     header: {
         fontSize: '1.2rem'
     }
-    /*media: {
-        height: 0,
-        paddingTop: '56.25%',
-    },*/
 }));
 
 export function Article(props) {                        //   одна статья ---------------------------------------------------
@@ -74,7 +72,6 @@ export function Article(props) {                        //   одна стать
                         })}
                     </Typography>
                 </CardContent>
-
             </Collapse>
         </Card>
     );
@@ -96,7 +93,6 @@ export function News(props) {                          //   лента стат�
                 if(!isAdmin){setIsAdmin(true)}
             }
         });
-    //useEffect(()=> {})
     if (data.length > 0) {
         newsTemplate = data.map(function(item, index) {
             return (
